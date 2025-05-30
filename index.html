@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ClimaCast - Weather Forecast</title>
+  <link rel="stylesheet" href="styles/base.css" />
+</head>
+<body>
+  <header>
+    <h1>ClimaCast</h1>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="#">Favorites</a></li>
+        <li><a href="#">About</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section id="search-section">
+      <h2>Check the Weather</h2>
+      <form id="weather-form">
+        <label for="city">Enter a City:</label>
+        <input type="text" id="city" name="city" required placeholder="e.g., Temecula" />
+        <button type="submit">Get Weather</button>
+      </form>
+    </section>
+
+    <section id="current-weather">
+      <h2>Current Weather</h2>
+      <div class="weather-card">
+        <p><strong>Location:</strong> <span id="location-name">--</span></p>
+        <p><strong>Temperature:</strong> <span id="temperature">--</span> °<span id="unit">F</span></p>
+        <p><strong>Condition:</strong> <span id="condition">--</span></p>
+        <img id="weather-icon" src="" alt="Weather Icon" />
+        <button id="toggle-units">Switch to °C</button>
+        <button id="save-favorite">⭐ Save to Favorites</button>
+      </div>
+    </section>
+
+    <section id="forecast">
+      <h2>5-Day Forecast</h2>
+      <div class="forecast-cards">
+        <!-- Forecast cards will be dynamically inserted here -->
+        <div class="forecast-card">Day 1 Placeholder</div>
+        <div class="forecast-card">Day 2 Placeholder</div>
+        <div class="forecast-card">Day 3 Placeholder</div>
+        <div class="forecast-card">Day 4 Placeholder</div>
+        <div class="forecast-card">Day 5 Placeholder</div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 ClimaCast | Weather data from Open-Meteo</p>
+    <ul class="social-links">
+      <li><a href="#">Instagram</a></li>
+      <li><a href="#">Facebook</a></li>
+    </ul>
+  </footer>
+
+  <script type="module" src="/main.js"></script>
+</body>
+</html>

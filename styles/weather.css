@@ -1,0 +1,29 @@
+.weather-card {
+  background: var(--card-bg);
+  padding: 1.5rem;
+  margin: 1rem auto;
+  max-width: 600px;
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow);
+  text-align: center;
+}
+
+.weather-card img {
+  width: 100px;
+  height: auto;
+}
+
+.forecast-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 1rem;
+  padding: 1rem;
+}
+
+.forecast-card {
+  background: var(--card-bg);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow);
+  padding: 1rem;
+  text-align: center;
+}

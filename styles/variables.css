@@ -1,0 +1,10 @@
+:root {
+  --primary-color: #3a86ff;
+  --secondary-color: #ffbe0b;
+  --bg-color: #f7f7f7;
+  --text-color: #333;
+  --card-bg: #ffffff;
+  --border-radius: 0.75rem;
+  --shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  --font-family: 'Segoe UI', sans-serif;
+}
