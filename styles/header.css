@@ -1,3 +1,5 @@
+/* styles/header.css */
+
 header {
   background-color: var(--primary-color);
   color: white;
@@ -5,22 +7,82 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  flex-wrap: wrap;
+  position: relative;
 }
 
 header h1 {
   margin: 0;
 }
 
-nav ul {
-  list-style: none;
+/* Hamburger Menu Toggle */
+.menu-toggle {
+  display: flex; /* Initially visible on mobile */
+  flex-direction: column;
+  justify-content: space-around;
+  width: 25px;
+  height: 25px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
   padding: 0;
-  margin: 0;
-  display: flex;
-  gap: 1rem;
+  z-index: 1001;
 }
 
-nav li a {
-  color: white;
+.menu-toggle .bar {
+  display: block;
+  width: 25px;
+  height: 3px;
+  background-color: white;
+  border-radius: 3px;
+  transition: all 0.3s ease-in-out;
+}
+
+/* Hamburger animation to 'X' */
+.menu-toggle.open .bar:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+
+.menu-toggle.open .bar:nth-child(2) {
+  opacity: 0;
+}
+
+.menu-toggle.open .bar:nth-child(3) {
+  transform: rotate(-45deg) translate(7px, -6px);
+}
+
+
+/* Navigation Menu - Mobile First */
+.forecast-nav {
+  display: none; /* Hidden by default */
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  background-color: var(--card-bg);
+  box-shadow: var(--shadow);
+  z-index: 1000;
+}
+
+.forecast-nav.show {
+  display: block; /* Shown with JavaScript */
+}
+
+.forecast-nav ul {
+  list-style: none;
+  padding: 1rem 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.forecast-nav li {
+  margin: 0.5rem 0;
+}
+
+.forecast-nav a {
+  text-decoration: none;
+  color: var(--text-color);
   font-weight: bold;
+  padding: 0.5rem 1rem;
 }

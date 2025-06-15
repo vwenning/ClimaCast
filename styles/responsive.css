@@ -1,10 +1,29 @@
-@media (max-width: 600px) {
-  form {
-    flex-direction: column;
+/* styles/responsive.css */
+
+@media (min-width: 768px) {
+  .menu-toggle {
+    display: none; /* Hide hamburger on desktop */
   }
 
-  header {
-    flex-direction: column;
-    align-items: flex-start;
+  .forecast-nav {
+    display: flex !important; /* Override inline style from JS */
+    position: static;
+    background-color: transparent;
+    box-shadow: none;
+    width: auto;
+  }
+
+  .forecast-nav ul {
+    flex-direction: row;
+    padding: 0;
+  }
+
+  .forecast-nav li {
+    margin: 0 0 0 1rem;
+  }
+
+  .forecast-nav a {
+    color: white;
+    padding: 0;
   }
 }
