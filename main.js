@@ -1,4 +1,3 @@
-// DOM element references
 const weatherForm = document.getElementById('weather-form');
 const cityInput = document.getElementById('city');
 const locationName = document.getElementById('location-name');
@@ -11,22 +10,17 @@ const forecastContainer = document.querySelector('.forecast-cards');
 const toggleBtn = document.querySelector('.menu-toggle');
 const nav = document.querySelector('.forecast-nav');
 
-// State variables
-let currentTempC = null;  // Store current temperature in Celsius
+let currentTempC = null;
 let currentCity = null;
 let currentLat = null;
 let currentLon = null;
 let useFahrenheit = true;
-let latestDailyData = null; // Store daily forecast data globally
+let latestDailyData = null;
 
-// --- Utility Functions ---
-
-// Convert Celsius to Fahrenheit
 function cToF(celsius) {
   return (celsius * 9 / 5) + 32;
 }
 
-// Convert Open-Meteo weather codes to user-friendly descriptions
 function weatherCodeToDescription(code) {
   const map = {
     0: 'Clear sky', 1: 'Mainly clear', 2: 'Partly cloudy', 3: 'Overcast',
@@ -42,7 +36,6 @@ function weatherCodeToDescription(code) {
   return map[code] || 'Unknown weather';
 }
 
-// Map weather codes to local icon filenames
 function weatherCodeToIcon(code) {
   if ([0, 1].includes(code)) return 'images/clear.png';
   if ([2, 3].includes(code)) return 'images/cloudy.png';
@@ -50,13 +43,9 @@ function weatherCodeToIcon(code) {
   if ([51, 53, 55, 56, 57, 61, 63, 65, 66, 67, 80, 81, 82].includes(code)) return 'images/rain.png';
   if ([71, 73, 75, 77, 85, 86].includes(code)) return 'images/snow.png';
   if ([95, 96, 99].includes(code)) return 'images/thunderstorm.png';
-  return 'images/weather-icon-lg.png'; // Default fallback icon
+  return 'images/weather-icon-lg.png';
 }
 
-
-// --- UI Update Functions ---
-
-// Update displayed temperature based on the current unit selection
 function updateTemperature() {
   if (currentTempC === null) return;
   temperature.textContent = useFahrenheit
@@ -64,9 +53,8 @@ function updateTemperature() {
     : `${currentTempC.toFixed(1)} °C`;
 }
 
-// Create and display the 5-day forecast cards
 function displayForecast(dailyData) {
-  forecastContainer.innerHTML = ''; // Clear previous forecast
+  forecastContainer.innerHTML = ''; 
   for (let i = 0; i < 5; i++) {
     const date = new Date(dailyData.time[i]);
     const dayName = date.toLocaleDateString(undefined, { weekday: 'short' });
@@ -86,82 +74,69 @@ function displayForecast(dailyData) {
   }
 }
 
-// Update all parts of the UI with new weather data
 function updateUI(weatherData, cityName) {
-    currentTempC = weatherData.current_weather.temperature;
-    latestDailyData = weatherData.daily; // Save for unit conversion
-    currentCity = cityName; // Save the name for favorites
+  currentTempC = weatherData.current_weather.temperature;
+  latestDailyData = weatherData.daily; 
+  currentCity = cityName; 
 
-    locationName.textContent = currentCity;
-    condition.textContent = weatherCodeToDescription(weatherData.current_weather.weathercode);
-    weatherIcon.src = weatherCodeToIcon(weatherData.current_weather.weathercode);
-    weatherIcon.alt = weatherCodeToDescription(weatherData.current_weather.weathercode);
-    
-    updateTemperature();
-    displayForecast(latestDailyData);
+  locationName.textContent = currentCity;
+  condition.textContent = weatherCodeToDescription(weatherData.current_weather.weathercode);
+  weatherIcon.src = weatherCodeToIcon(weatherData.current_weather.weathercode);
+  weatherIcon.alt = weatherCodeToDescription(weatherData.current_weather.weathercode);
+
+  updateTemperature();
+  displayForecast(latestDailyData);
 }
 
-
-// --- Favorites Functions ---
-
 function loadFavorites() {
-  return JSON.parse(localStorage.getItem('favorites') || '[]');
+  return JSON.parse(localStorage.getItem('favoriteCities') || '[]');
 }
 
 function saveFavorites(favs) {
-  localStorage.setItem('favorites', JSON.stringify(favs));
+  localStorage.setItem('favoriteCities', JSON.stringify(favs));
 }
 
-
-// --- Event Listeners ---
-
-// Main search form handler
 weatherForm.addEventListener('submit', async (e) => {
   e.preventDefault();
   const city = cityInput.value.trim();
   if (!city) return;
 
   try {
-    // 1. Geocode city name to get coordinates
     const geoResponse = await fetch(`https://nominatim.openstreetmap.org/search?format=json&countrycodes=us&q=${encodeURIComponent(city)}`);
     const geoData = await geoResponse.json();
     if (!geoData.length) throw new Error('City not found. Please try again.');
 
-    // 2. Store location data
     currentLat = geoData[0].lat;
     currentLon = geoData[0].lon;
-    
-    // 3. Fetch weather using coordinates
+
     const weatherResponse = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${currentLat}&longitude=${currentLon}&current_weather=true&daily=temperature_2m_max,temperature_2m_min,weathercode&timezone=auto`);
     const weatherData = await weatherResponse.json();
     if (!weatherData.current_weather) throw new Error('Weather data not available for this location.');
 
-    // 4. Update UI with new data
     updateUI(weatherData, geoData[0].display_name);
 
   } catch (err) {
     alert(err.message);
   }
 
-  cityInput.value = ''; // Clear input field
+  cityInput.value = ''; 
 });
 
-// Unit toggle button
 toggleUnitsBtn.addEventListener('click', () => {
   useFahrenheit = !useFahrenheit;
   toggleUnitsBtn.textContent = useFahrenheit ? 'Switch to °C' : 'Switch to °F';
-  updateTemperature(); // Update current temp
+  updateTemperature(); 
   if (latestDailyData) {
-    displayForecast(latestDailyData); // Redraw forecast with new units
+    displayForecast(latestDailyData); 
   }
 });
 
-// Handle saving favorite cities
 saveFavoriteBtn.addEventListener('click', () => {
   if (!currentCity || !currentLat || !currentLon) {
     return alert('No city selected to save!');
   }
   const favorites = loadFavorites();
+
   if (!favorites.some(fav => fav.city === currentCity)) {
     favorites.push({ city: currentCity, lat: currentLat, lon: currentLon });
     saveFavorites(favorites);
@@ -171,16 +146,11 @@ saveFavoriteBtn.addEventListener('click', () => {
   }
 });
 
-// Hamburger menu toggle
 toggleBtn.addEventListener('click', () => {
   toggleBtn.classList.toggle('open');
   nav.classList.toggle('show');
 });
 
-
-// --- Initial Load Functionality ---
-
-// Load weather for user's current location on page load
 async function loadWeatherForCurrentLocation() {
   if (!navigator.geolocation) {
       return alert('Geolocation is not supported by your browser. Please search for a city.');
@@ -191,17 +161,14 @@ async function loadWeatherForCurrentLocation() {
     currentLon = position.coords.longitude;
 
     try {
-      // 1. Reverse geocode to get city name
       const revGeoResponse = await fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${currentLat}&lon=${currentLon}`);
       const revGeoData = await revGeoResponse.json();
       const cityName = revGeoData.display_name || 'Current Location';
 
-      // 2. Fetch weather
       const weatherResponse = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${currentLat}&longitude=${currentLon}&current_weather=true&daily=temperature_2m_max,temperature_2m_min,weathercode&timezone=auto`);
       const weatherData = await weatherResponse.json();
       if (!weatherData.current_weather) throw new Error('Weather data not available.');
 
-      // 3. Update UI
       updateUI(weatherData, cityName);
 
     } catch (err) {
@@ -212,5 +179,4 @@ async function loadWeatherForCurrentLocation() {
   });
 }
 
-// Initial call to load weather when the script runs
 loadWeatherForCurrentLocation();
