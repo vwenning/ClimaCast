@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="title" content="ClimaCast">
+    <meta name="author" content="Victoria Wenning and Ethan Seegmiller">
+    <meta name="keywords" content="">
+    <title>Contact Us</title>
+    <link rel="stylesheet" href="styles/variables.css" />
+    <link rel="stylesheet" href="styles/global.css" />
+    <link rel="stylesheet" href="styles/base.css" />
+    <link rel="stylesheet" href="styles/header.css" />
+    <link rel="stylesheet" href="styles/form.css" />
+    <link rel="stylesheet" href="styles/weather.css" />
+    <link rel="stylesheet" href="styles/footer.css" />
+    <link rel="stylesheet" href="styles/responsive.css" />
+</head>
+<body>
+    <header>
+        <h1>ClimaCast</h1>
+        <button class="menu-toggle" aria-label="Toggle navigation">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </button>
+        <nav class="forecast-nav">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="favorites.html">Favorites</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Hourly</a></li>
+                <li><a href="#">1-Day</a></li>
+                <li><a href="#">3-Days</a></li>
+                <li><a href="#">5-Days</a></li>
+                <li><a href="#">7-Days</a></li>
+                <li><a href="#">10-Days</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <div class="contact-form">
+            <h2>Contact Us</h2>
+            <form action="submit_form.php" method="POST">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required />
+
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required />
+
+                <label for="subject">Subject:</label>
+                <input type="text" id="subject" name="subject" />
+
+                <label for="message">Message:</label>
+                <textarea id="message" name="message" rows="5" required></textarea>
+
+                <button type="submit">Send Message</button>
+            </form>
+        </div>
+    </main>
+    <footer>
+        <p>&copy; 2025 ClimaCast | Weather data from Open-Meteo</p>
+        <ul class="social-links">
+            <li><a href="#">Instagram</a></li>
+            <li><a href="#">Facebook</a></li>
+        </ul>
+    </footer>
+</body>
+</html>
