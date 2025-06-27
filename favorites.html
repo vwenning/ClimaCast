@@ -19,10 +19,33 @@
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
 <body class="p-6">
-  <div class="max-w-4xl mx-auto">
-    <h1 class="text-3xl font-bold mb-4">Your Favorite Cities</h1>
-    <div id="favoritesContainer" class="grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3"></div>
-    <a href="index.html" class="mt-6 inline-block text-blue-600 hover:underline">← Back to Home</a>
-  </div>
+  <header>
+    <h1>ClimaCast</h1>
+    <button class="menu-toggle" aria-label="Toggle navigation">
+      <span class="bar"></span>
+      <span class="bar"></span>
+      <span class="bar"></span>
+    </button>
+    <nav class="forecast-nav">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="favorites.html">Favorites</a></li>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Hourly</a></li>
+        <li><a href="#">1-Day</a></li>
+        <li><a href="#">3-Days</a></li>
+        <li><a href="#">5-Days</a></li>
+        <li><a href="#">7-Days</a></li>
+        <li><a href="#">10-Days</a></li>
+      </ul>
+    </nav>
+  </header>
+  <main>
+    <div class="max-w-4xl mx-auto">
+      <h1 class="text-3xl font-bold mb-4">Your Favorite Cities</h1>
+      <div id="favoritesContainer" class="grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3"></div>
+      <a href="index.html" class="mt-6 inline-block text-blue-600 hover:underline">← Back to Home</a>
+    </div>
+  </main>
 </body>
 </html>
