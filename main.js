@@ -179,4 +179,12 @@ async function loadWeatherForCurrentLocation() {
   });
 }
 
-loadWeatherForCurrentLocation();
+const urlParams = new URLSearchParams(window.location.search);
+const cityFromURL = urlParams.get('city');
+
+if (cityFromURL) {
+  cityInput.value = cityFromURL;
+  weatherForm.dispatchEvent(new Event('submit'));
+} else {
+  loadWeatherForCurrentLocation();
+}

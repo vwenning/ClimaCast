@@ -17,8 +17,10 @@ document.addEventListener("DOMContentLoaded", async () => {
     const card = document.createElement("div");
     card.className = "bg-white p-4 shadow rounded mb-4";
     card.innerHTML = `
-      <h2 class="text-xl font-semibold mb-2">${city}</h2>
-      <p>Current Temp: ${temp}°C</p>
+      <a href="index.html?city=${encodeURIComponent(city)}" class="block">
+        <h2 class="text-xl font-semibold mb-2">${city}</h2>
+        <p>Current Temp: ${temp}°C</p>
+      </a>
       <button class="remove-btn text-sm text-red-500 hover:underline" data-city="${city}">Remove</button>
     `;
 
