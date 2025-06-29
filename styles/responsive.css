@@ -5,21 +5,28 @@
     display: none; /* Hide hamburger on desktop */
   }
 
+  .page-header {
+    display: flex;
+    justify-content: center;
+  }
+
   .forecast-nav {
-    display: flex !important; /* Override inline style from JS */
-    position: static;
+    display: flex; /* Override inline style from JS */
+    top: unset;
     background-color: transparent;
     box-shadow: none;
-    width: auto;
   }
 
   .forecast-nav ul {
     flex-direction: row;
     padding: 0;
+    justify-content: center;
+    margin: auto;
   }
 
   .forecast-nav li {
     margin: 0 0 0 1rem;
+    justify-content: center;
   }
 
   .forecast-nav a {
