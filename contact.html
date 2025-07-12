@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="title" content="ClimaCast">
-    <meta name="author" content="Victoria Wenning and Ethan Seegmiller">
-    <meta name="keywords" content="">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="title" content="ClimaCast" />
+    <meta name="author" content="Victoria Wenning and Ethan Seegmiller" />
+    <meta name="keywords" content="" />
     <title>Contact Us</title>
     <link rel="stylesheet" href="styles/variables.css" />
     <link rel="stylesheet" href="styles/global.css" />
@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="styles/weather.css" />
     <link rel="stylesheet" href="styles/footer.css" />
     <link rel="stylesheet" href="styles/responsive.css" />
+    <link rel="stylesheet" href="styles/contact.css" />
 </head>
 <body>
     <header>
@@ -42,7 +43,7 @@
     <main>
         <div class="contact-form">
             <h2>Contact Us</h2>
-            <form action="submit_form.php" method="POST">
+            <form id="contactForm">
                 <label for="name">Name:</label>
                 <input type="text" id="name" name="name" required />
 
@@ -66,5 +67,18 @@
             <li><a href="#">Facebook</a></li>
         </ul>
     </footer>
+
+    <script>
+        const form = document.getElementById('contactForm');
+
+        form.addEventListener('submit', function(event) {
+            event.preventDefault();
+            const formContainer = document.querySelector('.contact-form');
+            formContainer.innerHTML = `
+                <h2>Thank you for your submission!</h2>
+                <p>We appreciate you reaching out to us. We'll get back to you shortly.</p>
+            `;
+        });
+    </script>
 </body>
 </html>
