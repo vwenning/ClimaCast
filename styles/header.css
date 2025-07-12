@@ -92,7 +92,7 @@ header h1 {
 
 #logo {
   text-align: center;
-  margin-top: 300px;
+  margin-top: 150px;
   position: relative;  
   z-index: 11;        
 }
@@ -239,4 +239,20 @@ header h1 {
     100% {
         transform: rotate(360deg);
     }
+}
+
+@media (max-width: 600px) {
+  .container {
+    width: 250px;
+    height: 250px;
+    top: 2rem;
+    left: 50%;
+    transform: translate(-50%, 0);
+    margin-top: 0.5rem;
+  }
+  .center {
+    left: 10%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
 }
