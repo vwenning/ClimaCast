@@ -27,3 +27,9 @@
   padding: 1rem;
   text-align: center;
 }
+
+.forecast-card img {
+  width: 100px;
+  height: auto;
+  margin-bottom: 0.5rem;
+}
