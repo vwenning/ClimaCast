@@ -96,7 +96,7 @@ function saveFavorites(favs) {
   localStorage.setItem('favoriteCities', JSON.stringify(favs));
 }
 
-weatherForm.addEventListener('submit', async (e) => {
+weatherForm?.addEventListener('submit', async (e) => {
   e.preventDefault();
   const city = cityInput.value.trim();
   if (!city) return;
@@ -122,7 +122,7 @@ weatherForm.addEventListener('submit', async (e) => {
   cityInput.value = ''; 
 });
 
-toggleUnitsBtn.addEventListener('click', () => {
+toggleUnitsBtn?.addEventListener('click', () => {
   useFahrenheit = !useFahrenheit;
   toggleUnitsBtn.textContent = useFahrenheit ? 'Switch to °C' : 'Switch to °F';
   updateTemperature(); 
@@ -131,7 +131,7 @@ toggleUnitsBtn.addEventListener('click', () => {
   }
 });
 
-saveFavoriteBtn.addEventListener('click', () => {
+saveFavoriteBtn?.addEventListener('click', () => {
   if (!currentCity || !currentLat || !currentLon) {
     return alert('No city selected to save!');
   }
@@ -147,6 +147,7 @@ saveFavoriteBtn.addEventListener('click', () => {
 });
 
 toggleBtn.addEventListener('click', () => {
+  console.log('Toggle button clicked');
   toggleBtn.classList.toggle('open');
   nav.classList.toggle('show');
 });
@@ -185,6 +186,6 @@ const cityFromURL = urlParams.get('city');
 if (cityFromURL) {
   cityInput.value = cityFromURL;
   weatherForm.dispatchEvent(new Event('submit'));
-} else {
+} else if (weatherForm) {
   loadWeatherForCurrentLocation();
 }

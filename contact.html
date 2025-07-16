@@ -2,29 +2,45 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="title" content="ClimaCast" />
-    <meta name="author" content="Victoria Wenning and Ethan Seegmiller" />
-    <meta name="keywords" content="" />
-    <title>Contact Us</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="title" content="ClimaCast">
+    <meta name="author" content="Victoria Wenning and Ethan Seegmiller">
+    <meta name="keywords" content="">
+    <title>ClimaCast - Weather Forecast</title>
     <link rel="stylesheet" href="styles/variables.css" />
     <link rel="stylesheet" href="styles/global.css" />
     <link rel="stylesheet" href="styles/base.css" />
-    <link rel="stylesheet" href="styles/logo.css" />
+    <link rel="stylesheet" href="styles/header.css" />
     <link rel="stylesheet" href="styles/form.css" />
     <link rel="stylesheet" href="styles/weather.css" />
     <link rel="stylesheet" href="styles/footer.css" />
     <link rel="stylesheet" href="styles/responsive.css" />
     <link rel="stylesheet" href="styles/contact.css" />
 </head>
+
 <body>
-    <header>
-        <h1>ClimaCast</h1>
+    <div class="logo-animation-wrapper">
+        <div class="container">
+            <div class="center">
+                <div class="cloud"></div>
+                <ul class="sun">
+                    <li></li><li></li><li></li><li></li><li></li><li></li>
+                    <li></li><li></li><li></li><li></li><li></li><li></li>
+                </ul>
+            </div>
+        </div>
+        <section id="logo">
+            <img src="images/climacastlogo.png" alt="ClimaCast Logo">
+        </section>
+    </div>
+
+    <header class="page-header">
         <button class="menu-toggle" aria-label="Toggle navigation">
             <span class="bar"></span>
             <span class="bar"></span>
             <span class="bar"></span>
         </button>
+
         <nav class="forecast-nav">
             <ul>
                 <li><a href="index.html">Home</a></li>
@@ -68,7 +84,8 @@
         </ul>
     </footer>
 
-    <script>
+     <script type="module" src="main.js"></script>
+     <script>
         const form = document.getElementById('contactForm');
 
         form.addEventListener('submit', function(event) {
