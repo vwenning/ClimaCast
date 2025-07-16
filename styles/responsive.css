@@ -1,23 +1,18 @@
 /* styles/responsive.css */
-/* Ensure this file is linked AFTER header.css in your HTML */
 
 /* MOBILE VIEW */
 @media (max-width: 600px) {
     .logo-animation-wrapper {
         /* Adjust min-height specifically for mobile */
-        min-height: 250px; /* You will likely need to adjust this */
-        padding-bottom: 0.5rem; /* Less space below logo for mobile */
+        min-height: 250px;
+        padding-bottom: 0.5rem;
     }
     .container {
-        /* Adjust top to frame animation on mobile */
-        top: -120px; /* You will likely need to adjust this */
-        /* width and height remain ORIGINAL (600px) */
+        top: -120px;
     }
     #logo img {
-        max-height: 4rem; /* Keep your existing mobile logo size */
+        max-height: 4rem;
     }
-
-    /* Ensure hamburger is always visible on mobile */
     .menu-toggle {
         display: flex;
     }
@@ -27,16 +22,14 @@
 /* DESKTOP/LARGER SCREENS */
 @media (min-width: 601px) {
     .logo-animation-wrapper {
-        min-height: 280px; /* You will likely need to adjust this */
+        min-height: 250px; /* CHANGES VERTICAL POSITION OF BLUE BAR */
         padding-bottom: 1rem;
     }
     .container {
-        /* Adjust top to frame animation on desktop */
-        top: -150px; /* You will likely need to adjust this */
-        /* width and height remain ORIGINAL (600px) */
+        top: -130px; /* ADJUSTS ANIMATION VERTICAL POSITION */
     }
     #logo img {
-        max-height: 5rem; /* Keep your existing desktop logo size */
+        max-height: 5rem;
     }
 
     /* Hide hamburger menu on desktop */

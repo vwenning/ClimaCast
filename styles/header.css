@@ -2,57 +2,51 @@
 
 /* --- Logo and Animation Branding Area Container --- */
 .logo-animation-wrapper {
-    position: relative; /* CRUCIAL: Establishes positioning context for absolute children */
+    position: relative;
     width: 100%;
-    /* MIN-HEIGHT IS THE PRIMARY TWEAKABLE FOR VISIBILITY. */
-    /* This needs to be tall enough to fully contain the *visible* part of your animation AND your logo */
-    min-height: 280px; /* Start here. You will adjust this. */
-    overflow: hidden; /* CRUCIAL: Clips anything outside this wrapper, preventing cut-offs */
-    display: flex; /* Use flexbox to stack and position logo */
+    min-height: 280px;
+    overflow: hidden;
+    display: flex;
     flex-direction: column;
-    justify-content: flex-end; /* Pushes content (primarily #logo) to the bottom */
+    justify-content: center; /* Centers the logo vertically */
     align-items: center; /* Centers items horizontally */
-    background-color: var(--card-bg); /* Or whatever background you want for this section */
     padding-bottom: 1rem; /* Space between logo and the blue navigation bar below */
+    padding-top: 8rem; /* ADJUSTS VERTICAL POSITION OF LOGO */
 }
 
 /* Logo Image Container */
 #logo {
-    position: relative; /* Maintain relative positioning for normal flow within flex parent */
+    position: relative;
     text-align: center;
-    margin-top: 0; /* Remove any previous large margin-top */
-    z-index: 20; /* Ensure logo is above the animation if they overlap */
+    margin-top: 0;
+    z-index: 20;
 }
 
 #logo img {
-    max-height: 5rem; /* KEEP YOUR ORIGINAL MAX-HEIGHT */
+    max-height: 1rem;
     display: block;
-    margin: 0 auto; /* Centers the image */
+    margin: 0 auto;
 }
 
 /* ANIMATION'S ROOT CONTAINER (ONLY adjust 'top' and centering) */
 .container {
-    width: 600px; /* DO NOT CHANGE THIS - YOUR ORIGINAL ANIMATION WIDTH */
-    height: 600px; /* DO NOT CHANGE THIS - YOUR ORIGINAL ANIMATION HEIGHT */
+    width: 600px;
+    height: 600px;
     border-radius: 50%;
     position: absolute; /* Position relative to .logo-animation-wrapper */
-    /* THIS 'TOP' IS THE KEY ADJUSTMENT: */
     /* Make it less negative (e.g., -100px) if the top of the animation is cut off. */
     /* Make it more negative (e.g., -200px) if you want the animation to sit higher up. */
-    top: -150px; /* STARTING POINT: You'll fine-tune this */
+    top: -150px; /* STARTING POINT: WILL MAKE IT NOT FALL OFF THE PAGE */
     left: 50%;
-    transform: translateX(-50%); /* Centers horizontally */
-    margin-top: 0; /* Ensure no conflicting margin */
-    z-index: 10; /* Below the logo */
-    /* background-color: rgba(0, 0, 255, 0.1); /* DEBUG: Temporarily show bounds */
+    transform: translateX(-65%); /* Centers horizontally */
+    margin-top: 0;
+    z-index: 10;
 }
 
 .center {
-    /* DO NOT CHANGE: These are internal to your animation centering */
     position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
 }
 
-/* Cloud and Sun and their li elements: ABSOLUTELY NO CHANGES HERE */
 .cloud {
     position: absolute; width: 80px; height: 70px; top: -20px;
     border-radius: 50px; background: #fff; animation: move 8s linear infinite;
@@ -89,7 +83,6 @@
 .sun li:nth-child(11) { transform: translate(-50%, -50%) rotate(112.5deg); } /* Duplicate, intentional? */
 .sun li:nth-child(12) { transform: translate(-50%, -50%) rotate(-112.5deg); } /* Duplicate, intentional? */
 
-/* Keyframes: NO CHANGES HERE */
 @keyframes move {
     0% { transform: translateX(0); }
     50% { transform: translateX(100px); }
