@@ -6,7 +6,7 @@
     <meta name="title" content="ClimaCast">
     <meta name="author" content="Victoria Wenning and Ethan Seegmiller">
     <meta name="keywords" content="">
-    <title>Contact Us</title>
+    <title>ClimaCast - Weather Forecast</title>
     <link rel="stylesheet" href="styles/variables.css" />
     <link rel="stylesheet" href="styles/global.css" />
     <link rel="stylesheet" href="styles/base.css" />
@@ -57,45 +57,64 @@
         </nav>
     </header>
     <main>
-        <div class="contact-form">
-            <h2>Contact Us</h2>
-            <form id="contactForm">
-                <label for="name">Name:</label>
-                <input type="text" id="name" name="name" required />
+  <section>
+    <h2>What is ClimaCast?</h2>
+    <p>
+      ClimaCast is a school project designed to deliver real-time weather updates in a clean, user-friendly way. It provides current conditions and forecasts based on your location or a city of your choice.
+    </p>
+  </section>
 
-                <label for="email">Email:</label>
-                <input type="email" id="email" name="email" required />
+  <section>
+    <h2>Project Purpose</h2>
+    <p>
+      This project was created as part of a web development course to practice HTML, CSS, JavaScript, APIs, and responsive design. The goal was to build a fully functional, visually appealing weather application from scratch.
+    </p>
+  </section>
 
-                <label for="subject">Subject:</label>
-                <input type="text" id="subject" name="subject" />
+  <section>
+    <h2>Features</h2>
+    <ul>
+      <li>Current weather based on location or user input</li>
+      <li>5-day weather forecast</li>
+      <li>Responsive design for mobile and desktop</li>
+      <li>Clear icon-based display of weather conditions</li>
+    </ul>
+  </section>
 
-                <label for="message">Message:</label>
-                <textarea id="message" name="message" rows="5" required></textarea>
+  <section>
+    <h2>Technologies Used</h2>
+    <p>
+      ClimaCast is built using:
+    </p>
+    <ul>
+      <li>HTML5 & CSS3</li>
+      <li>JavaScript (ES6+)</li>
+      <li>OpenWeatherMap API</li>
+      <li>Responsive layout techniques</li>
+    </ul>
+  </section>
 
-                <button type="submit">Send Message</button>
-            </form>
-        </div>
-    </main>
-    <footer>
-        <p>&copy; 2025 ClimaCast | Weather data from Open-Meteo</p>
-        <ul class="social-links">
-            <li><a href="#">Instagram</a></li>
-            <li><a href="#">Facebook</a></li>
-        </ul>
-    </footer>
+  <section>
+    <h2>Meet the Developer's</h2>
+    <p>
+      Hi! We are Victoria Wenning and Ethan Seegmiller, we are students at BYUI. We are  developers passionate about web design and front-end development. ClimaCast is our applications, and we have learned a lot about how real-world data can be used to build interactive web experiences.
+    </p>
+  </section>
+    <section>
+        <h2>Contact Us</h2>
+        <p>
+        For questions or feedback, please reach out via our <a href="contact.html">Contact Us</a> page.
+        </p>
+</main>
+<footer>
+    <p>&copy; 2025 ClimaCast | Weather data from Open-Meteo</p>
+    <ul class="social-links">
+      <li><a href="#">Instagram</a></li>
+      <li><a href="#">Facebook</a></li>
+    </ul>
+  </footer>
 
-     <script type="module" src="main.js"></script>
-     <script>
-        const form = document.getElementById('contactForm');
-
-        form.addEventListener('submit', function(event) {
-            event.preventDefault();
-            const formContainer = document.querySelector('.contact-form');
-            formContainer.innerHTML = `
-                <h2>Thank you for your submission!</h2>
-                <p>We appreciate you reaching out to us. We'll get back to you shortly.</p>
-            `;
-        });
-    </script>
+  <script type="module" src="main.js"></script>
 </body>
+
 </html>
