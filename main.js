@@ -54,8 +54,9 @@ function updateTemperature() {
 }
 
 function displayForecast(dailyData) {
-  forecastContainer.innerHTML = ''; 
-  for (let i = 0; i < 5; i++) {
+  forecastContainer.innerHTML = '';
+  const numDays = location.pathname.match(/\d{1,2}/)?.[0] || 0;
+  for (let i = 0; i < numDays; i++) {
     const date = new Date(dailyData.time[i]);
     const dayName = date.toLocaleDateString(undefined, { weekday: 'short' });
     const maxTemp = useFahrenheit ? cToF(dailyData.temperature_2m_max[i]) : dailyData.temperature_2m_max[i];
