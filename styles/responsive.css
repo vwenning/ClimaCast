@@ -1,36 +1,76 @@
 /* styles/responsive.css */
+/* Ensure this file is linked AFTER header.css in your HTML */
 
-@media (min-width: 768px) {
-  .menu-toggle {
-    display: none; /* Hide hamburger on desktop */
-  }
+/* MOBILE VIEW */
+@media (max-width: 600px) {
+    .logo-animation-wrapper {
+        /* Adjust min-height specifically for mobile */
+        min-height: 250px; /* You will likely need to adjust this */
+        padding-bottom: 0.5rem; /* Less space below logo for mobile */
+    }
+    .container {
+        /* Adjust top to frame animation on mobile */
+        top: -120px; /* You will likely need to adjust this */
+        /* width and height remain ORIGINAL (600px) */
+    }
+    #logo img {
+        max-height: 4rem; /* Keep your existing mobile logo size */
+    }
 
-  .page-header {
-    display: flex;
-    justify-content: center;
-  }
+    /* Ensure hamburger is always visible on mobile */
+    .menu-toggle {
+        display: flex;
+    }
+}
 
-  .forecast-nav {
-    display: flex; /* Override inline style from JS */
-    top: unset;
-    background-color: transparent;
-    box-shadow: none;
-  }
 
-  .forecast-nav ul {
-    flex-direction: row;
-    padding: 0;
-    justify-content: center;
-    margin: auto;
-  }
+/* DESKTOP/LARGER SCREENS */
+@media (min-width: 601px) {
+    .logo-animation-wrapper {
+        min-height: 280px; /* You will likely need to adjust this */
+        padding-bottom: 1rem;
+    }
+    .container {
+        /* Adjust top to frame animation on desktop */
+        top: -150px; /* You will likely need to adjust this */
+        /* width and height remain ORIGINAL (600px) */
+    }
+    #logo img {
+        max-height: 5rem; /* Keep your existing desktop logo size */
+    }
 
-  .forecast-nav li {
-    margin: 0 0 0 1rem;
-    justify-content: center;
-  }
+    /* Hide hamburger menu on desktop */
+    .menu-toggle {
+        display: none;
+    }
 
-  .forecast-nav a {
-    color: white;
-    padding: 0;
-  }
+    /* Navigation Menu - Horizontal on Desktop */
+    .forecast-nav {
+        display: block; /* Always visible on desktop */
+        position: static; /* Remove absolute positioning */
+        width: auto; /* Content-based width */
+        background-color: transparent; /* No background for desktop nav */
+        box-shadow: none; /* No shadow for desktop nav */
+        z-index: auto; /* Reset z-index */
+    }
+
+    .forecast-nav ul {
+        flex-direction: row; /* Horizontal links */
+        gap: 1.5rem; /* Space between links */
+        padding: 0; /* Remove vertical padding */
+    }
+
+    .forecast-nav li {
+        margin: 0; /* Remove vertical margin */
+    }
+
+    .forecast-nav a {
+        color: white; /* Ensure text color is right for desktop header */
+        padding: 0.5rem 0.8rem; /* Adjust padding for desktop links */
+    }
+
+    /* Header (blue navigation bar) layout for desktop */
+    header.page-header {
+        justify-content: flex-end; /* Push nav to the right, as there's no toggle */
+    }
 }
