@@ -42,7 +42,7 @@
         display: block; /* Always visible on desktop */
         position: static; /* Remove absolute positioning */
         width: auto; /* Content-based width */
-        background-color: transparent; /* No background for desktop nav */
+        background-color: transparent;
         box-shadow: none; /* No shadow for desktop nav */
         z-index: auto; /* Reset z-index */
     }
@@ -64,6 +64,6 @@
 
     /* Header (blue navigation bar) layout for desktop */
     header.page-header {
-        justify-content: flex-end; /* Push nav to the right, as there's no toggle */
+        justify-content: center;
     }
 }
