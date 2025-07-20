@@ -7,14 +7,56 @@
         min-height: 250px;
         padding-bottom: 0.5rem;
     }
+
     .container {
         top: -120px;
     }
+
     #logo img {
         max-height: 4rem;
     }
+
     .menu-toggle {
         display: flex;
+    }
+
+    .forecast-cards {
+        display: flex;
+        flex-direction: column;
+        /* Cards stack vertically down the page */
+        gap: 1rem;
+    }
+
+    .forecast-card {
+        display: flex;
+        flex-direction: row;
+        /* Card content side-by-side */
+        align-items: center;
+        justify-content: center;
+        gap: 1rem;
+        padding: 1em;
+        min-width: 0;
+        background: var(--card-bg, #fff);
+        border-radius: 0.75em;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        margin: 0;
+        text-align: center;
+        /* Center text inside the card */
+    }
+
+    .forecast-card h3,
+    .forecast-card img,
+    .forecast-card p {
+        margin: 0;
+        flex: 0 0 auto;
+        text-align: center;
+        /* Center text for each element */
+    }
+
+    .forecast-card img {
+        width: 48px;
+        height: 48px;
+        object-fit: contain;
     }
 }
 
@@ -22,12 +64,16 @@
 /* DESKTOP/LARGER SCREENS */
 @media (min-width: 601px) {
     .logo-animation-wrapper {
-        min-height: 250px; /* CHANGES VERTICAL POSITION OF BLUE BAR */
+        min-height: 250px;
+        /* CHANGES VERTICAL POSITION OF BLUE BAR */
         padding-bottom: 1rem;
     }
+
     .container {
-        top: -130px; /* ADJUSTS ANIMATION VERTICAL POSITION */
+        top: -130px;
+        /* ADJUSTS ANIMATION VERTICAL POSITION */
     }
+
     #logo img {
         max-height: 5rem;
     }
@@ -39,27 +85,38 @@
 
     /* Navigation Menu - Horizontal on Desktop */
     .forecast-nav {
-        display: block; /* Always visible on desktop */
-        position: static; /* Remove absolute positioning */
-        width: auto; /* Content-based width */
+        display: block;
+        /* Always visible on desktop */
+        position: static;
+        /* Remove absolute positioning */
+        width: auto;
+        /* Content-based width */
         background-color: transparent;
-        box-shadow: none; /* No shadow for desktop nav */
-        z-index: auto; /* Reset z-index */
+        box-shadow: none;
+        /* No shadow for desktop nav */
+        z-index: auto;
+        /* Reset z-index */
     }
 
     .forecast-nav ul {
-        flex-direction: row; /* Horizontal links */
-        gap: 1.5rem; /* Space between links */
-        padding: 0; /* Remove vertical padding */
+        flex-direction: row;
+        /* Horizontal links */
+        gap: 1.5rem;
+        /* Space between links */
+        padding: 0;
+        /* Remove vertical padding */
     }
 
     .forecast-nav li {
-        margin: 0; /* Remove vertical margin */
+        margin: 0;
+        /* Remove vertical margin */
     }
 
     .forecast-nav a {
-        color: white; /* Ensure text color is right for desktop header */
-        padding: 0.5rem 0.8rem; /* Adjust padding for desktop links */
+        color: white;
+        /* Ensure text color is right for desktop header */
+        padding: 0.5rem 0.8rem;
+        /* Adjust padding for desktop links */
     }
 
     /* Header (blue navigation bar) layout for desktop */
