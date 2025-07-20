@@ -150,3 +150,7 @@ header.page-header {
 .forecast-nav a:hover {
     color: gold;
 }
+.forecast-nav a.active {
+  color: gold;
+  border-bottom: 2px solid gold;
+}

@@ -1,7 +1,7 @@
 const weatherForm = document.getElementById('weather-form');
 const cityInput = document.getElementById('city');
+const forecastHeader = document.querySelector('#forecast h2');
 const locationName = document.getElementById('location-name');
-const temperature = document.getElementById('temperature');
 const condition = document.getElementById('condition');
 const weatherIcon = document.getElementById('weather-icon');
 const toggleUnitsBtn = document.getElementById('toggle-units');
@@ -9,6 +9,7 @@ const saveFavoriteBtn = document.getElementById('save-favorite');
 const forecastContainer = document.querySelector('.forecast-cards');
 const toggleBtn = document.querySelector('.menu-toggle');
 const nav = document.querySelector('.forecast-nav');
+const hourlyLocation = document.getElementById('hourly-location');
 
 let currentTempC = null;
 let currentCity = null;
@@ -55,7 +56,9 @@ function updateTemperature() {
 
 function displayForecast(dailyData) {
   forecastContainer.innerHTML = '';
-  const numDays = location.pathname.match(/\d{1,2}/)?.[0] || 0;
+  let numDays = location.pathname.match(/\d{1,2}/)?.[0];
+  numDays = numDays ? parseInt(numDays) : 5; // Default to 5 days if not found
+
   for (let i = 0; i < numDays; i++) {
     const date = new Date(dailyData.time[i]);
     const dayName = date.toLocaleDateString(undefined, { weekday: 'short' });
@@ -75,10 +78,33 @@ function displayForecast(dailyData) {
   }
 }
 
+// Function to update the forecast header with city name
+function updateForecastHeader(cityName) {
+  if (forecastHeader) {
+    forecastHeader.textContent = `5-Day Forecast${cityName ? ' - ' + cityName : ''}`;
+  }
+}
+
+// Function to update the hourly header with city name
+function updateHourlyHeader(cityName) {
+  if (hourlyLocation) {
+    hourlyLocation.textContent = cityName ? `- ${cityName}` : '';
+  }
+}
+
+// Function to update the hourly UI
+function updateHourlyUI(hourlyData, cityName) {
+  // ...your code to display hourly data...
+  updateHourlyHeader(cityName); // This sets the location in the header
+}
+
+// Example usage after fetching hourly weather:
+// updateHourlyUI(hourlyWeatherData, currentCity);
+
 function updateUI(weatherData, cityName) {
   currentTempC = weatherData.current_weather.temperature;
-  latestDailyData = weatherData.daily; 
-  currentCity = cityName; 
+  latestDailyData = weatherData.daily;
+  currentCity = cityName;
 
   locationName.textContent = currentCity;
   condition.textContent = weatherCodeToDescription(weatherData.current_weather.weathercode);
@@ -87,6 +113,7 @@ function updateUI(weatherData, cityName) {
 
   updateTemperature();
   displayForecast(latestDailyData);
+  updateForecastHeader(cityName); // <-- Add this line
 }
 
 function loadFavorites() {
@@ -97,38 +124,70 @@ function saveFavorites(favs) {
   localStorage.setItem('favoriteCities', JSON.stringify(favs));
 }
 
+// Save city on search
+document.getElementById('weather-form').addEventListener('submit', function (e) {
+  e.preventDefault();
+  const city = document.getElementById('city').value.trim();
+  if (city) {
+    localStorage.setItem('climacast_city', city);
+    // Call your weather fetch/display function here using 'city'
+    fetchWeather(city);
+  }
+});
+
+// On page load, use saved city if available
+window.addEventListener('DOMContentLoaded', () => {
+  const savedCity = localStorage.getItem('climacast_city');
+  if (savedCity) {
+    fetchWeather(savedCity);
+  } else {
+    fetchWeatherByCurrentLocation();
+  }
+});
+
+// On other pages, use the same logic:
+// const savedCity = localStorage.getItem('climacast_city');
+// if (savedCity) { fetchWeather(savedCity); } else { fetchWeatherByCurrentLocation(); }
+
 weatherForm?.addEventListener('submit', async (e) => {
   e.preventDefault();
   const city = cityInput.value.trim();
   if (!city) return;
+
+  localStorage.setItem('climacast_city', city);
 
   try {
     const geoResponse = await fetch(`https://nominatim.openstreetmap.org/search?format=json&countrycodes=us&q=${encodeURIComponent(city)}`);
     const geoData = await geoResponse.json();
     if (!geoData.length) throw new Error('City not found. Please try again.');
 
-    currentLat = geoData[0].lat;
-    currentLon = geoData[0].lon;
+    const lat = geoData[0].lat;
+    const lon = geoData[0].lon;
 
-    const weatherResponse = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${currentLat}&longitude=${currentLon}&current_weather=true&daily=temperature_2m_max,temperature_2m_min,weathercode&timezone=auto`);
+    const weatherResponse = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current_weather=true&daily=temperature_2m_max,temperature_2m_min,weathercode&timezone=auto`);
     const weatherData = await weatherResponse.json();
     if (!weatherData.current_weather) throw new Error('Weather data not available for this location.');
 
     updateUI(weatherData, geoData[0].display_name);
+    updateForecastHeader(geoData[0].display_name);
 
+    // Save coordinates for favorites
+    currentLat = lat;
+    currentLon = lon;
+    currentCity = geoData[0].display_name;
   } catch (err) {
     alert(err.message);
   }
 
-  cityInput.value = ''; 
+  cityInput.value = '';
 });
 
 toggleUnitsBtn?.addEventListener('click', () => {
   useFahrenheit = !useFahrenheit;
   toggleUnitsBtn.textContent = useFahrenheit ? 'Switch to °C' : 'Switch to °F';
-  updateTemperature(); 
+  updateTemperature();
   if (latestDailyData) {
-    displayForecast(latestDailyData); 
+    displayForecast(latestDailyData);
   }
 });
 
@@ -155,7 +214,7 @@ toggleBtn.addEventListener('click', () => {
 
 async function loadWeatherForCurrentLocation() {
   if (!navigator.geolocation) {
-      return alert('Geolocation is not supported by your browser. Please search for a city.');
+    return alert('Geolocation is not supported by your browser. Please search for a city.');
   }
 
   navigator.geolocation.getCurrentPosition(async (position) => {
@@ -172,6 +231,7 @@ async function loadWeatherForCurrentLocation() {
       if (!weatherData.current_weather) throw new Error('Weather data not available.');
 
       updateUI(weatherData, cityName);
+      updateForecastHeader('Current Location');
 
     } catch (err) {
       alert(err.message);
@@ -183,10 +243,44 @@ async function loadWeatherForCurrentLocation() {
 
 const urlParams = new URLSearchParams(window.location.search);
 const cityFromURL = urlParams.get('city');
+const savedCity = localStorage.getItem('climacast_city');
 
 if (cityFromURL) {
   cityInput.value = cityFromURL;
   weatherForm.dispatchEvent(new Event('submit'));
+} else if (savedCity) {
+  fetchWeather(savedCity); // <-- Use saved city from localStorage
 } else if (weatherForm) {
   loadWeatherForCurrentLocation();
+}
+
+document.querySelectorAll('.forecast-nav a').forEach(link => {
+  if (window.location.pathname.endsWith(link.getAttribute('href'))) {
+    link.classList.add('active');
+  }
+});
+
+async function fetchWeather(city) {
+  try {
+    const geoResponse = await fetch(`https://nominatim.openstreetmap.org/search?format=json&countrycodes=us&q=${encodeURIComponent(city)}`);
+    const geoData = await geoResponse.json();
+    if (!geoData.length) throw new Error('City not found. Please try again.');
+
+    const lat = geoData[0].lat;
+    const lon = geoData[0].lon;
+
+    const weatherResponse = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current_weather=true&daily=temperature_2m_max,temperature_2m_min,weathercode&timezone=auto`);
+    const weatherData = await weatherResponse.json();
+    if (!weatherData.current_weather) throw new Error('Weather data not available for this location.');
+
+    updateUI(weatherData, geoData[0].display_name);
+    updateForecastHeader(geoData[0].display_name);
+
+    // Save coordinates for favorites
+    currentLat = lat;
+    currentLon = lon;
+    currentCity = geoData[0].display_name;
+  } catch (err) {
+    alert(err.message);
+  }
 }
