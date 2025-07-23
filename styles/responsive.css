@@ -58,6 +58,47 @@
         height: 48px;
         object-fit: contain;
     }
+
+    .weather-card {
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 1rem;
+        flex-wrap: nowrap;
+        padding: 1em;
+    }
+
+    .weather-main-info {
+        flex: 2 1 60%;
+    }
+
+    .weather-side {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        flex: 1 1 40%;
+        gap: 0.5rem;
+    }
+
+    #weather-icon {
+        width: 64px;
+        height: 64px;
+        margin-bottom: 0.5em;
+    }
+
+    .weather-buttons {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5em;
+        align-items: center;
+        width: 100%;
+    }
+
+    .weather-buttons button {
+        width: 100%;
+        min-width: 120px;
+    }
 }
 
 
