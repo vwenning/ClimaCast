@@ -165,3 +165,171 @@
         justify-content: center;
     }
 }
+
+/* TABLET VIEW */
+@media (min-width: 601px) and (max-width: 900px) {
+    .logo-animation-wrapper {
+        min-height: 200px;
+        padding-bottom: 0.75rem;
+    }
+
+    .container {
+        top: -100px;
+    }
+
+    #logo img {
+        max-height: 4.5rem;
+    }
+
+    .forecast-cards {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 1rem;
+        justify-content: center;
+    }
+
+    .forecast-card {
+        min-width: 220px;
+        max-width: 45vw;
+        flex: 1 1 40%;
+        margin: 0.5rem 0;
+        padding: 1em;
+        border-radius: 0.75em;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        text-align: center;
+    }
+
+    .weather-card {
+        flex-direction: row;
+        align-items: flex-start;
+        gap: 1.5rem;
+        padding: 1.5em;
+    }
+
+    .weather-main-info {
+        flex: 2 1 60%;
+    }
+
+    .weather-side {
+        flex: 1 1 40%;
+        align-items: center;
+        gap: 0.75rem;
+    }
+
+    #weather-icon {
+        width: 72px;
+        height: 72px;
+    }
+
+    .weather-buttons {
+        flex-direction: column;
+        gap: 0.75em;
+        align-items: center;
+        width: 100%;
+    }
+
+    .weather-buttons button {
+        width: 100%;
+        min-width: 120px;
+    }
+
+    /* Navigation Menu - Horizontal on Tablet */
+    .forecast-nav {
+        display: block;
+        position: static;
+        width: auto;
+        background-color: transparent;
+        box-shadow: none;
+        z-index: auto;
+    }
+
+    .forecast-nav ul {
+        flex-direction: row;
+        gap: 1.2rem;
+        padding: 0;
+        justify-content: center;
+    }
+
+    .forecast-nav li {
+        margin: 0;
+    }
+
+    .forecast-nav a {
+        color: white;
+        padding: 0.5rem 0.7rem;
+    }
+}
+
+/* MOBILE & TABLET: Hamburger menu visible, nav hidden by default */
+@media (max-width: 1000px) {
+    .menu-toggle {
+        display: flex;
+    }
+
+    .forecast-nav {
+        display: none;
+        position: absolute;
+        width: 100%;
+        left: 0;
+        top: 100%;
+        background-color: var(--card-bg);
+        box-shadow: var(--shadow);
+        z-index: 1000;
+    }
+
+    .forecast-nav.show {
+        display: block;
+    }
+
+    .forecast-nav ul {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0.5rem;
+        padding: 0.5rem 1rem;
+        margin: 0;
+    }
+
+    .forecast-nav a {
+        width: 100%;
+        text-align: center;
+        padding: 0.75rem 0.5rem;
+        white-space: normal;
+        box-sizing: border-box;
+    }
+
+    .forecast-nav li {
+        width: 100%;
+        margin: 0.25rem 0;
+        display: flex;
+        justify-content: center;
+    }
+}
+
+/* DESKTOP: Hamburger hidden, nav always visible */
+@media (min-width: 1001px) {
+    .menu-toggle {
+        display: none;
+    }
+
+    .forecast-nav {
+        display: block;
+        position: static;
+        width: auto;
+        background-color: transparent;
+        box-shadow: none;
+        z-index: auto;
+    }
+
+    .forecast-nav ul {
+        flex-direction: row;
+        gap: 1.5rem;
+        padding: 0;
+        justify-content: center;
+    }
+
+    .forecast-nav a {
+        color: white;
+        padding: 0.5rem 0.8rem;
+    }
+}
