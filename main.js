@@ -125,7 +125,7 @@ function saveFavorites(favs) {
 }
 
 // Save city on search
-document.getElementById('weather-form').addEventListener('submit', function (e) {
+document.getElementById('weather-form')?.addEventListener('submit', function (e) {
   e.preventDefault();
   const city = document.getElementById('city').value.trim();
   if (city) {
