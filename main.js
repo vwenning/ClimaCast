@@ -10,6 +10,7 @@ const forecastContainer = document.querySelector('.forecast-cards');
 const toggleBtn = document.querySelector('.menu-toggle');
 const nav = document.querySelector('.forecast-nav');
 const hourlyLocation = document.getElementById('hourly-location');
+const temperature = document.getElementById('temperature');
 
 let currentTempC = null;
 let currentCity = null;
@@ -124,16 +125,16 @@ function saveFavorites(favs) {
   localStorage.setItem('favoriteCities', JSON.stringify(favs));
 }
 
-// Save city on search
-document.getElementById('weather-form')?.addEventListener('submit', function (e) {
-  e.preventDefault();
-  const city = document.getElementById('city').value.trim();
-  if (city) {
-    localStorage.setItem('climacast_city', city);
-    // Call your weather fetch/display function here using 'city'
-    fetchWeather(city);
-  }
-});
+// // Save city on search
+// document.getElementById('weather-form')?.addEventListener('submit', function (e) {
+//   e.preventDefault();
+//   const city = document.getElementById('city').value.trim();
+//   if (city) {
+//     localStorage.setItem('climacast_city', city);
+//     // Call your weather fetch/display function here using 'city'
+//     fetchWeather(city);
+//   }
+// });
 
 // On page load, use saved city if available
 window.addEventListener('DOMContentLoaded', () => {
@@ -206,7 +207,7 @@ saveFavoriteBtn?.addEventListener('click', () => {
   }
 });
 
-toggleBtn.addEventListener('click', () => {
+toggleBtn?.addEventListener('click', () => {
   console.log('Toggle button clicked');
   toggleBtn.classList.toggle('open');
   nav.classList.toggle('show');
