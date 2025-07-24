@@ -125,16 +125,16 @@ function saveFavorites(favs) {
   localStorage.setItem('favoriteCities', JSON.stringify(favs));
 }
 
-// // Save city on search
-// document.getElementById('weather-form')?.addEventListener('submit', function (e) {
-//   e.preventDefault();
-//   const city = document.getElementById('city').value.trim();
-//   if (city) {
-//     localStorage.setItem('climacast_city', city);
-//     // Call your weather fetch/display function here using 'city'
-//     fetchWeather(city);
-//   }
-// });
+// Save city on search
+document.getElementById('weather-form')?.addEventListener('submit', function (e) {
+  e.preventDefault();
+  const city = document.getElementById('city').value.trim();
+  if (city) {
+    localStorage.setItem('climacast_city', city);
+    // Call your weather fetch/display function here using 'city'
+    fetchWeather(city);
+  }
+});
 
 // On page load, use saved city if available
 window.addEventListener('DOMContentLoaded', () => {
